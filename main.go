@@ -3,18 +3,16 @@ package main
 import (
 	"fmt"
 	"splitwise-in-golang/models"
-	"splitwise-in-golang/repo"
 	"splitwise-in-golang/service"
 )
 
 func main(){
 	numberOfUsers, commands := getInput()
-	userMap := repo.NewUserMap()
-	ledgerMap := repo.NewLedgerMap()
-	ledgerManager := service.NewLedgerManager(ledgerMap,userMap)
-	addUsers(numberOfUsers, userMap)
+	users := make([]models.User,0)
+	ledgerManager := service.NewLedgerManager(users)
+	addUsers(numberOfUsers, ledgerManager)
 	for _, val := range commands {
-		output,err := service.RunCommand(val, ledgerManager)
+		output,err := RunCommand(val, ledgerManager)
 		if err != nil {
 			fmt.Println(err)
 		} else if len(output) != 0 {
@@ -24,10 +22,10 @@ func main(){
 
 }
 
-func addUsers(numberOfUsers int, mp *repo.UserMap){
+func addUsers(numberOfUsers int, mp *service.LedgerManager){
 	for i:=1;i<=numberOfUsers;i++ {
 		user := &models.User{
-			Name: fmt.Sprintf("u%v",i),
+			ID: fmt.Sprintf("u%v",i),
 		}
 		mp.AddUser(user)
 	}
@@ -49,3 +47,28 @@ func getInput()(int,[]string){
 	}
 	return numberOfUsers, commands
 }
+
+
+// Output
+//[No balances]
+//[No balances]
+//[u4 owes u1 : 250
+//]
+//[u2 owes u1 : 250
+// u3 owes u1 : 250
+// u4 owes u1 : 250
+//]
+//[u2 owes u1 : 620
+// u3 owes u1 : 1130
+// u4 owes u1 : 250
+//]
+//[u2 owes u1 : 620
+// u3 owes u1 : 1130
+// u1 owes u4 : 230
+//]
+//[u3 owes u4 : 240
+// u2 owes u1 : 620
+// u3 owes u1 : 1130
+// u1 owes u4 : 230
+// u2 owes u4 : 240
+//]
