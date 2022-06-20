@@ -49,27 +49,3 @@ func getInput()(int,[]string){
 	}
 	return numberOfUsers, commands
 }
-
-// Output
-//[No balances]
-//[No balances]
-//[u4 owes u1 : 250
-//]
-//[u2 owes u1 : 250
-// u3 owes u1 : 250
-// u4 owes u1 : 250
-//]
-//[u2 owes u1 : 620
-// u3 owes u1 : 1130
-// u4 owes u1 : 250
-//]
-//[u2 owes u1 : 620
-// u3 owes u1 : 1130
-// u1 owes u4 : 230
-//]
-//[u3 owes u4 : 240
-// u2 owes u1 : 620
-// u3 owes u1 : 1130
-// u1 owes u4 : 230
-// u2 owes u4 : 240
-//]
