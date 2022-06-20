@@ -12,8 +12,8 @@ const (
 )
 
 const(
-	Show    = "SHOW"
-	Expense = "EXPENSE"
+	ShowTag    = "SHOW"
+	ExpenseTag = "EXPENSE"
 )
 
 func GetUniqueID() int64 {

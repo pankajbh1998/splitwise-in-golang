@@ -1,8 +1,8 @@
 package models
 
 type Owe struct {
-	Debter   int64
-	Creditor int64
+	Debter   string
+	Creditor string
 }
 
 type Ledger struct{
